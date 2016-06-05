@@ -11,6 +11,11 @@ import (
 )
 
 func main() {
+	if len(os.Args) != 2 {
+		fmt.Fprintf(os.Stderr, "usage: %s QUERY\n", os.Args[0])
+		os.Exit(1)
+	}
+
 	resp, err := http.Get(fmt.Sprintf(
 		"http://dictionary.goo.ne.jp/srch/jn/%s/m6u/",
 		strings.Replace(url.QueryEscape(os.Args[1]), "+", "%20", -1),
